@@ -11,7 +11,11 @@ public class Tesla implements ICar {
         System.out.println("Tesla is charging...");
     }
 
-    public void autoPilot() {
-        System.out.println("Tesla is driving with autopilot");
-    }
+ //   public void autoPilot() {
+ //       System.out.println("Tesla is driving with autopilot");
+ //   }
+
+    @Override
+    public void turnOnMusic() {
+        System.out.println("Tesla turns on the music with his vois");}
 }
