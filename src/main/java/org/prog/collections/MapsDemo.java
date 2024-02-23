@@ -1,7 +1,6 @@
 package org.prog.collections;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MapsDemo {
 
@@ -30,23 +29,23 @@ public class MapsDemo {
 //        System.out.println(stringMap.getOrDefault("key1", "defaultValue"));
 //        System.out.println(stringMap.getOrDefault("key3", "defaultValue"));
 
-        Car redCar = new Car();
-        Car blueCar = new Car();
-        redCar.color = "red";
-        blueCar.color = "blue";
+//        ColorCar redCar = new ColorCar();
+//        ColorCar blueCar = new ColorCar();
+//        redCar.color = "red";
+//        blueCar.color = "blue";
 
-        Map<Car, String> carOwners = new HashMap<>();
-        carOwners.put(redCar, "Joe");
-        carOwners.put(blueCar, "Joe");
-        carOwners.put(new Car(), "Kate");
-        carOwners.put(new Car(), "Bill");
+//        Map<ColorCar, String> carOwners = new HashMap<>();
+//        carOwners.put(redCar, "Joe");
+//        carOwners.put(blueCar, "Joe");
+//        carOwners.put(new ColorCar(), "Kate");
+//        carOwners.put(new ColorCar(), "Bill");
 
-        Map<String, List<Car>> ownedCars = new HashMap<>();
-        ownedCars.put("Joe", new ArrayList<>());
-        List<Car> joesCars = ownedCars.get("Joe");
-        joesCars.add(redCar);
+//        Map<String, List<ColorCar>> ownedCars = new HashMap<>();
+//        ownedCars.put("Joe", new ArrayList<>());
+//        List<ColorCar> joesCars = ownedCars.get("Joe");
+//        joesCars.add(redCar);
 
-        ownedCars.get("Joe").add(new Car());
+//        ownedCars.get("Joe").add(new ColorCar());
 
-    }
+  }
 }
