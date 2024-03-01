@@ -54,19 +54,35 @@ public class MapsDemo {
         ownedCars.put(new Car(CarColors.BLACK), "Bob");
         ownedCars.put(new Car(CarColors.WHITE), "Kate");
         ownedCars.put(new Car(CarColors.GREEN), "Bill");
+
         ownedCars.put(new Car(CarColors.RED), "Alice");
         ownedCars.put(new Car(CarColors.GREEN), "Alice");
+       // List<Car> carWithCertainColor = new ArrayList<>();
+       // Set<Car> cars = ownedCars.keySet();
+       // for (Car c : cars) {
+         //   if (c.carColor.equals(CarColors.BLACK)) {
+           //     carWithCertainColor.add(c);
+                 //List<Car> carWithCertainColor = new ArrayList<>();
+                 // Set<Car> cars = ownedCars.keySet();
+                 // for (Car c : cars) {
+                 //     if (c.carColor.equals(CarColors.BLACK)) {
+                //          carWithCertainColor.add(c);
+                //      }
+                //  }
+                List<Car> ownersOfCarsWithSpecificColor = new ArrayList<>();
 
-        List<Car> carWithCertainColor = new ArrayList<>();
-        Set<Car> cars = ownedCars.keySet();
-        for (Car c : cars) {
-            if (c.carColor.equals(CarColors.BLACK)) {
-                carWithCertainColor.add(c);
+                for (var owner : ownedCars.entrySet()) {
+                    if (owner.getValue().equals("John") || owner.getValue().equals("Alice")) {
+                        ownersOfCarsWithSpecificColor.add(owner.getKey());
+                    }
+                }
+
+
+                // for (Car c : carWithCertainColor) {
+                //     System.out.println(ownedCars.get(c));
+                for (Car car : ownersOfCarsWithSpecificColor) {
+                    System.out.println(car.carColor);
+                }
             }
         }
 
-        for (Car c : carWithCertainColor) {
-            System.out.println(ownedCars.get(c));
-        }
-    }
-}
