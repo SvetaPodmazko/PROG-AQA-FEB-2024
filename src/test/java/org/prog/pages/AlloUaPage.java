@@ -3,6 +3,7 @@ package org.prog.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -11,11 +12,41 @@ import java.util.List;
 public class AlloUaPage {
 
     private final WebDriver driver;
+    public int page;
+    public int currentPage;
 
     public AlloUaPage(WebDriver driver) {
         this.driver = driver;
     }
+    public void scrollToElement(WebElement e) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
+    }
+    public void checkPageUrl(int page){
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(3L));
+        wait.until(ExpectedConditions.urlContains("index/p-" + page));
+    }
 
+    public void clickPageNumber(int page){
+        WebElement p = driver.findElement(By.xpath("//*[@id=\"__layout\"]/div/div[1]/div[2]/div/div[2]/div[3]/ul/li["+page+"]/a"));
+        p.click();
+        checkPageUrl(page);
+    }
+    public int getCurrentPage(){
+        WebElement p = driver.findElement(By.cssSelector("#__layout > div > div:nth-child(2) > div.v-catalog > div > div.v-catalog__products > div.pagination > ul > li.pagination__item.current"));
+        int currentPage = Integer.parseInt(p.getText());
+        return currentPage;
+    }
+
+    public void clickNextPage(){
+        WebElement p = driver.findElement(By.className("pagination__next__link"));
+        p.click();
+        checkPageUrl(getCurrentPage()+1);
+    }
+    public void clickBackPage() throws InterruptedException {
+        WebElement p = driver.findElement(By.xpath("//*[@id=\"__layout\"]/div/div[1]/div[2]/div/div[2]/div[3]/div[1]"));
+        p.click();
+        checkPageUrl(getCurrentPage());
+    }
     public void loadPage() {
         driver.get("https://allo.ua/");
     }
@@ -51,7 +82,7 @@ public class AlloUaPage {
         return driver.findElement(By.className("pagination"));
     }
 
-    public void scrollToElement(WebElement e) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
-    }
+   // public void scrollToElement(WebElement e) {
+   //     ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
+   // }
 }
