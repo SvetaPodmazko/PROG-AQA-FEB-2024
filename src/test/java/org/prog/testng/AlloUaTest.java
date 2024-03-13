@@ -21,8 +21,8 @@ public class AlloUaTest {
     //TODO: add method to page object that will switch between search pages
     //TODO: methods: left, right and by page number
     //TODO: test must vefiry that searched value is present on that page
-    @Test
-    public void searchForPhone() {
+    @Test (priority = 1)
+    public void searchForPhone() throws InterruptedException {
         String phoneName = "iPhone 15";
         page.loadPage();
         page.searchForGoods(phoneName);
@@ -30,11 +30,24 @@ public class AlloUaTest {
                 "No phone with name '" + phoneName + "' was present on page");
         page.scrollToElement(page.pagination());
         //add next page by clicking ">"
+        page.clickNextPage();
+        page.scrollToElement(page.pagination());
+        //add next page by clicking ">
         // add verifiation like line 29
     }
 
     //TODO: add second test where you change page by clicking "2"
+    @Test (priority = 2)
+    public void testPageNumber() {
+        page.clickPageNumber(3);
+        page.scrollToElement(page.pagination());
+    }
 
+    @Test (priority = 3)
+    public void testBackPage() throws InterruptedException {
+        page.clickBackPage();
+        page.scrollToElement(page.pagination());
+    }
     //TODO: * - switch page "2" then click "<" then validate goods
 
     @AfterSuite
