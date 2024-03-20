@@ -21,23 +21,23 @@ public class RestTests {
     @Test
     public void getRandomPersonTest() {
         RestAssured.baseURI = "https://randomuser.me/";
-//        Response response =
-//                RestAssured.get("api/?inc=gender,name,nat&noinfo");
+       // Response response =
+       //         RestAssured.get("api/?inc=gender,name,nat&noinfo");
 //
-//        response.prettyPrint();
+ //       response.prettyPrint();
 //
-//        ValidatableResponse vr = response.then();
+ //       ValidatableResponse vr = response.then();
 //
-//        vr.statusCode(200);
-//        vr.contentType(ContentType.JSON);
+  //     vr.statusCode(200);
+    //    vr.contentType(ContentType.JSON);
 
         RequestSpecification rs = RestAssured.given()
                 .header("X-Client", "prog qutomation")
                 .body("reqeust body")
-                //   .queryParam("inc", "gender,name,nat")
+                  //.queryParam("inc", "gender,name,nat")
                 .queryParam("noinfo")
-                //   .queryParam("results", 10)
-                .queryParam("results", 3)
+                  //.queryParam("results", 10)
+                .queryParam("results", 10)
                 .basePath("api/");
         rs.auth().basic("user", "password");
 
@@ -52,8 +52,7 @@ public class RestTests {
 
         ResultsDto dto = r.as(ResultsDto.class);
         System.out.println(dto.getResults().size());
-        // Assert.assertEquals(dto.getResults().size(), 10);
-        Assert.assertEquals(dto.getResults().size(), 3);
+         Assert.assertEquals(dto.getResults().size(), 3);
         boolean anyFemalePresent = false;
         for (PersonDto p : dto.getResults()) {
             if (p.getGender().equals("female")) {
